@@ -4,7 +4,6 @@
  */
 package autonoma.sanjose.models;
 import java.util.ArrayList;
-import java.util.List;
 /**
  *
  * @author herre
@@ -12,42 +11,92 @@ import java.util.List;
 
 
 public class Paciente {
+    
+    //Atributos
+    
     private String nombre;
-    private String numeroDocumento;
+    private String documentoIdentidad;
     private int edad;
-    private String correo;
-    private String telefono;
-    private String estado; // "saludable" o "critico"
-    private List<Enfermedad> enfermedades = new ArrayList<>();
-    private List<Medicina> medicinas = new ArrayList<>();
+    private ArrayList<String> enfermedades;  // Lista de enfermedades del paciente
+    private ArrayList<Medicamento> medicamentos;  // Medicamentos que el paciente está tomando
 
-    public Paciente(String nombre, String numeroDocumento, int edad, String correo, String telefono) {
+    /**
+     * Constructor del paciente.
+     * @param nombre Nombre del paciente.
+     * @param documentoIdentidad Documento de identidad del paciente.
+     * @param edad Edad del paciente.
+     */
+    public Paciente(String nombre, String documentoIdentidad, int edad) {
         this.nombre = nombre;
-        this.numeroDocumento = numeroDocumento;
+        this.documentoIdentidad = documentoIdentidad;
         this.edad = edad;
-        this.correo = correo;
-        this.telefono = telefono;
-        this.estado = "saludable";
+        this.enfermedades = new ArrayList<>();
+        this.medicamentos = new ArrayList<>();
+    }
+    
+    //Getters y Setters
+
+    public String getNombre() {
+        return nombre;
     }
 
-    public void añadirEnfermedad(Enfermedad enfermedad) {
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDocumentoIdentidad() {
+        return documentoIdentidad;
+    }
+
+    public void setDocumentoIdentidad(String documentoIdentidad) {
+        this.documentoIdentidad = documentoIdentidad;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public ArrayList<String> getEnfermedades() {
+        return enfermedades;
+    }
+
+    public void setEnfermedades(ArrayList<String> enfermedades) {
+        this.enfermedades = enfermedades;
+    }
+
+    public ArrayList<Medicamento> getMedicamentos() {
+        return medicamentos;
+    }
+
+    public void setMedicamentos(ArrayList<Medicamento> medicamentos) {
+        this.medicamentos = medicamentos;
+    }
+    
+
+    /**
+     * Método para agregar una enfermedad al paciente.
+     * @param enfermedad Enfermedad a agregar.
+     */
+    public void agregarEnfermedad(String enfermedad) {
         enfermedades.add(enfermedad);
-        estado = "critico";
     }
 
-    public void curarEnfermedad(Enfermedad enfermedad, Medicina medicina) {
-        if (enfermedades.contains(enfermedad)) {
-            enfermedades.remove(enfermedad);
-            medicinas.add(medicina);
-            if (enfermedades.isEmpty()) {
-                estado = "saludable";
-            }
-        } else {
-            System.out.println("Error: El paciente no tiene esta enfermedad.");
-        }
+    /**
+     * Método para prescribir un medicamento al paciente.
+     * @param medicamento Medicamento a ser prescrito.
+     */
+    public void prescribirMedicamento(Medicamento medicamento) {
+        medicamentos.add(medicamento);
     }
 
-    // Otros métodos de gestión de enfermedades y medicinas
+    @Override
+    public String toString() {
+        return "Paciente: " + nombre + " (" + documentoIdentidad + "), Edad: " + edad;
+    }
 }
 
     
