@@ -10,11 +10,14 @@ package autonoma.sanjose.models;
  */
 public class Gerente {
     
+    //Atributos
+    
     private String nombre;
     private String documento;
     private int edad;
     private String carrera;
 
+    //Constructor
     public Gerente(String nombre, String documento, int edad, String carrera) {
         this.nombre = nombre;
         this.documento = documento;
@@ -30,9 +33,6 @@ public class Gerente {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-
-    
 
     public String getDocumento() {
         return documento;
@@ -56,6 +56,11 @@ public class Gerente {
 
     public void setCarrera(String carrera) {
         this.carrera = carrera;
+    }
+    
+    @Override
+    public String toString() {
+        return nombre + " (" + documento + "), " + carrera + ", Edad: " + edad;
     }
 }
 

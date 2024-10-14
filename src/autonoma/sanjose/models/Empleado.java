@@ -6,14 +6,20 @@ package autonoma.sanjose.models;
 
 /**
  *
+ * Clase abstracta que representa a un empleado en el hospital.
+ * Los métodos y atributos comunes a los empleados están definidos aquí
  * @author herre
  */
 public abstract class Empleado {
    
+    //Atributos
+    
     protected String nombre;
     protected String numeroDocumento;
     protected int edad;
     protected double salarioBase;
+    
+    //Constructor
 
     public Empleado(String nombre, String numeroDocumento, int edad, double salarioBase) {
         this.nombre = nombre;
@@ -22,24 +28,18 @@ public abstract class Empleado {
         this.salarioBase = salarioBase;
     }
 
+    /**
+     * Método abstracto que se implementa en subclases para calcular el salario.
+     * @return Salario neto del empleado.
+     */
     public abstract double calcularSalario();
-}
-
-class EmpleadoSalud extends Empleado {
-    private String especialidad;
-    private int horasTrabajadas;
-
-    public EmpleadoSalud(String nombre, String numeroDocumento, int edad, double salarioBase, String especialidad, int horasTrabajadas) {
-        super(nombre, numeroDocumento, edad, salarioBase);
-        this.especialidad = especialidad;
-        this.horasTrabajadas = horasTrabajadas;
-    }
 
     @Override
-    public double calcularSalario() {
-        return salarioBase + (salarioBase * 0.012 * horasTrabajadas);
+    public String toString() {
+        return nombre + " (" + numeroDocumento + "), Edad: " + edad + ", Salario base: " + salarioBase;
     }
 }
+
 
 class EmpleadoOperativo extends Empleado {
     private String areaTrabajo;
