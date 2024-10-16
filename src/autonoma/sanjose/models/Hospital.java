@@ -5,6 +5,7 @@
 package autonoma.sanjose.models;
 
 import java.util.ArrayList;
+import  autonoma.sanjose.models.*;
 
 /**
  * es para generar un hospital 

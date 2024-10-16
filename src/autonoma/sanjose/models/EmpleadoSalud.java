@@ -17,7 +17,7 @@ public class EmpleadoSalud extends Empleado {
     
     //Constructor
 
-    public EmpleadoSalud(String especialidad, int horasTrabajadas, String nombre, String numeroDocumento, int edad, double salarioBase) {
+    public EmpleadoSalud(String especialidad, String nombre, int horasTrabajadas, int edad, String numeroDocumento, int salarioBase) {
         super(nombre, numeroDocumento, edad, salarioBase);
         this.especialidad = especialidad;
         this.horasTrabajadas = horasTrabajadas;
