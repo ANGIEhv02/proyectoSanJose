@@ -4,6 +4,8 @@
  */
 package autonoma.sanjose.models;
 
+import java.util.List;
+
 /**
  *
  * @author Moral
@@ -12,15 +14,15 @@ public abstract class Medicamento {
     
     //Atributos
     
-    protected String nombre;
-    protected String laboratorio;
+   protected String nombre;
     protected double precio;
+    protected int cantidadDisponible;
     
     //Constructor
-    public Medicamento(String nombre, String laboratorio, double precio) {
+     public Medicamento(String nombre, double precio, int cantidadDisponible) {
         this.nombre = nombre;
-        this.laboratorio = laboratorio;
         this.precio = precio;
+        this.cantidadDisponible = cantidadDisponible;
     }
     
     //Getters y Setters 
@@ -33,14 +35,6 @@ public abstract class Medicamento {
         this.nombre = nombre;
     }
 
-    public String getLaboratorio() {
-        return laboratorio;
-    }
-
-    public void setLaboratorio(String laboratorio) {
-        this.laboratorio = laboratorio;
-    }
-
     public double getPrecio() {
         return precio;
     }
@@ -48,6 +42,48 @@ public abstract class Medicamento {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
+
+    public int getCantidadDisponible() {
+        return cantidadDisponible;
+    }
+
+    public void setCantidadDisponible(int cantidadDisponible) {
+        this.cantidadDisponible = cantidadDisponible;
+    }
+
+    // Métodos abstractos
+    public abstract double calcularValorMedicamento();
     
-    public abstract String obtenerDetalles();
+     // Métodos CRUD
+    public static Medicamento buscarMedicamento(List<Medicamento> medicamentos, String nombre) {
+        for (Medicamento medicamento : medicamentos) {
+            if (medicamento.getNombre().equals(nombre)) {
+                return medicamento;
+            }
+        }
+        return null;
+    }
+
+    public static void agregarMedicamento(List<Medicamento> medicamentos, Medicamento nuevoMedicamento) {
+        medicamentos.add(nuevoMedicamento);
+    }
+
+    public static boolean eliminarMedicamento(List<Medicamento> medicamentos, String nombre) {
+        Medicamento medicamento = buscarMedicamento(medicamentos, nombre);
+        if (medicamento != null) {
+            medicamentos.remove(medicamento);
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean actualizarMedicamento(List<Medicamento> medicamentos, String nombre, Medicamento medicamentoActualizado) {
+        Medicamento medicamento = buscarMedicamento(medicamentos, nombre);
+        if (medicamento != null) {
+            int index = medicamentos.indexOf(medicamento);
+            medicamentos.set(index, medicamentoActualizado);
+            return true;
+        }
+        return false;
+    }
 }

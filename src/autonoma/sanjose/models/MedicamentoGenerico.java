@@ -12,23 +12,23 @@ public class MedicamentoGenerico extends Medicamento {
     
     //Atributos
     
-    private String principioActivo;
+    private String componenteActivo;
      
     //Constructor 
 
-    public MedicamentoGenerico(String principioActivo, String nombre, String laboratorio, double precio) {
-        super(nombre, laboratorio, precio);
-        this.principioActivo = principioActivo;
+   public MedicamentoGenerico(String nombre, double precio, int cantidadDisponible, String componenteActivo) {
+        super(nombre, precio, cantidadDisponible);
+        this.componenteActivo = componenteActivo;
     }
     
     //Getters y Setters 
 
-    public String getPrincipioActivo() {
-        return principioActivo;
+    public String getComponenteActivo() {
+        return componenteActivo;
     }
 
-    public void setPrincipioActivo(String principioActivo) {
-        this.principioActivo = principioActivo;
+    public void setComponenteActivo(String componenteActivo) {
+        this.componenteActivo = componenteActivo;
     }
 
     public String getNombre() {
@@ -39,14 +39,6 @@ public class MedicamentoGenerico extends Medicamento {
         this.nombre = nombre;
     }
 
-    public String getLaboratorio() {
-        return laboratorio;
-    }
-
-    public void setLaboratorio(String laboratorio) {
-        this.laboratorio = laboratorio;
-    }
-
     public double getPrecio() {
         return precio;
     }
@@ -54,17 +46,19 @@ public class MedicamentoGenerico extends Medicamento {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-    
-    //Metodos
-    
-    public MedicamentoGenerico(String nombre, String laboratorio, double precio) {
-        super(nombre, laboratorio, precio);
+
+    public int getCantidadDisponible() {
+        return cantidadDisponible;
     }
 
+    public void setCantidadDisponible(int cantidadDisponible) {
+        this.cantidadDisponible = cantidadDisponible;
+    }
+
+   
     @Override
-    public String obtenerDetalles() {
-         return "Medicamento Genérico: " + nombre + ", Laboratorio: " + laboratorio + ", Precio: " + precio + 
-               ", Principio Activo: " + principioActivo;
+    public double calcularValorMedicamento() {
+        return precio * cantidadDisponible; // Valor total del medicamento
     }
     
 }

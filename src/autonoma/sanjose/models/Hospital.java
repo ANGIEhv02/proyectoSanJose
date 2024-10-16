@@ -6,6 +6,8 @@ package autonoma.sanjose.models;
 
 import java.util.ArrayList;
 import  autonoma.sanjose.models.*;
+import java.util.Date;
+import java.util.List;
 
 /**
  * es para generar un hospital 
@@ -16,40 +18,20 @@ public class Hospital {
     //Atributos 
     
     private String nombre;
-    private String direccion;
-    private String telefono;
+    private String ubicacion;
     private double presupuesto;
-    private double metaVentasAnual;
-    private int fechaFundacion;
-    private Coordenadas localizacion;
     private Gerente gerente;
-    private ArrayList<Empleado> empleados;
-    private ArrayList<Paciente> pacientes;
-    private ArrayList<Cita> citas;
-    private Nomina nomina;
-    private String estado;
     
     //Constructor
-    
-     public Hospital(String nombre, String direccion, String telefono, double presupuesto, 
-                    double metaVentasAnual, int fechaFundacion, Coordenadas localizacion, 
-                    Gerente gerente) {
+
+    public Hospital(String nombre, String ubicacion, double presupuesto, Gerente gerente) {
         this.nombre = nombre;
-        this.direccion = direccion;
-        this.telefono = telefono;
+        this.ubicacion = ubicacion;
         this.presupuesto = presupuesto;
-        this.metaVentasAnual = metaVentasAnual;
-        this.fechaFundacion = fechaFundacion;
-        this.localizacion = localizacion;
         this.gerente = gerente;
-        this.empleados = new ArrayList<>();
-        this.pacientes = new ArrayList<>();
-        this.citas = new ArrayList<>();
-        this.nomina = new Nomina();
-        this.estado = "Activo";
     }
-     
-    //Getters y Setters 
+    
+    //Gettrs y Settrs
 
     public String getNombre() {
         return nombre;
@@ -59,20 +41,12 @@ public class Hospital {
         this.nombre = nombre;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getUbicacion() {
+        return ubicacion;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
     }
 
     public double getPresupuesto() {
@@ -83,30 +57,6 @@ public class Hospital {
         this.presupuesto = presupuesto;
     }
 
-    public double getMetaVentasAnual() {
-        return metaVentasAnual;
-    }
-
-    public void setMetaVentasAnual(double metaVentasAnual) {
-        this.metaVentasAnual = metaVentasAnual;
-    }
-
-    public int getFechaFundacion() {
-        return fechaFundacion;
-    }
-
-    public void setFechaFundacion(int fechaFundacion) {
-        this.fechaFundacion = fechaFundacion;
-    }
-
-    public Coordenadas getLocalizacion() {
-        return localizacion;
-    }
-
-    public void setLocalizacion(Coordenadas localizacion) {
-        this.localizacion = localizacion;
-    }
-
     public Gerente getGerente() {
         return gerente;
     }
@@ -115,82 +65,38 @@ public class Hospital {
         this.gerente = gerente;
     }
 
-    public ArrayList<Empleado> getEmpleados() {
-        return empleados;
-    }
-
-    public void setEmpleados(ArrayList<Empleado> empleados) {
-        this.empleados = empleados;
-    }
-
-    public ArrayList<Paciente> getPacientes() {
-        return pacientes;
-    }
-
-    public void setPacientes(ArrayList<Paciente> pacientes) {
-        this.pacientes = pacientes;
-    }
-
-    public ArrayList<Cita> getCitas() {
-        return citas;
-    }
-
-    public void setCitas(ArrayList<Cita> citas) {
-        this.citas = citas;
-    }
-
-    public Nomina getNomina() {
-        return nomina;
-    }
-
-    public void setNomina(Nomina nomina) {
-        this.nomina = nomina;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
     
-    /**
-     * Método para agregar un empleado al hospital.
-     */
-    public void agregarEmpleado(Empleado empleado) {
-        empleados.add(empleado);
-        nomina.agregarEmpleado(empleado);
-    }
-
-    /**
-     * Método para agregar un paciente al hospital.
-     */
-    public void agregarPaciente(Paciente paciente) {
-        pacientes.add(paciente);
-    }
-
-    /**
-     * Método para agregar una cita al hospital.
-     */
-    public void agregarCita(Cita cita) {
-        citas.add(cita);
-        presupuesto += cita.getValor(); // Incrementar presupuesto con el valor de la cita
-    }
-
-    /**
-     * Método para procesar la nómina de empleados.
-     */
-    public void procesarNomina() {
-        double totalNomina = nomina.calcularTotalNomina();
-        presupuesto -= totalNomina; // Descontar la nómina del presupuesto
-
-        if (presupuesto < 0) {
-            estado = "En quiebra"; // Cambiar estado si el presupuesto es negativo
-            System.out.println("¡Alerta! El hospital está en quiebra. No se puede procesar más nómina.");
-        } else {
-            nomina.mostrarNomina();
+    
+     // Métodos CRUD para hospital
+    public static Hospital buscarHospital(List<Hospital> hospitales, String nombre) {
+        for (Hospital hospital : hospitales) {
+            if (hospital.getNombre().equals(nombre)) {
+                return hospital;
+            }
         }
+        return null;
     }
-     
+
+    public static void agregarHospital(List<Hospital> hospitales, Hospital nuevoHospital) {
+        hospitales.add(nuevoHospital);
+    }
+
+    public static boolean eliminarHospital(List<Hospital> hospitales, String nombre) {
+        Hospital hospital = buscarHospital(hospitales, nombre);
+        if (hospital != null) {
+            hospitales.remove(hospital);
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean actualizarHospital(List<Hospital> hospitales, String nombre, Hospital hospitalActualizado) {
+        Hospital hospital = buscarHospital(hospitales, nombre);
+        if (hospital != null) {
+            int index = hospitales.indexOf(hospital);
+            hospitales.set(index, hospitalActualizado);
+            return true;
+        }
+        return false;
+    }
 }

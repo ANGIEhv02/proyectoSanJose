@@ -5,6 +5,7 @@
 package autonoma.sanjose.models;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * esto es para ver la nomina de el hospital
@@ -14,57 +15,63 @@ public class Nomina {
     
     //Atributos
     
-    private ArrayList<Empleado> empleados;
-    private double totalNomina;
+    private List<Empleado> empleados;
     
     //Constructor
 
-    public Nomina() {
-        this.empleados = new ArrayList<>();
-        this.totalNomina = 0.0;
+  public Nomina(List<Empleado> empleados) {
+        this.empleados = empleados;
     }
     
     //Getters y Setters 
 
-    public ArrayList<Empleado> getEmpleados() {
+    public List<Empleado> getEmpleados() {
         return empleados;
     }
 
-    public void setEmpleados(ArrayList<Empleado> empleados) {
+    public void setEmpleados(List<Empleado> empleados) {
         this.empleados = empleados;
     }
 
-    public double getTotalNomina() {
-        return totalNomina;
-    }
-
-    public void setTotalNomina(double totalNomina) {
-        this.totalNomina = totalNomina;
-    }
-    
-    /**
-     * Método para agregar un empleado a la nómina.
-     */
-    public void agregarEmpleado(Empleado empleado) {
-        empleados.add(empleado);
-        totalNomina += empleado.calcularSalario();
-    }
-
-    /**
-     * Método para calcular el total de la nómina.
-     */
-    public double calcularTotalNomina() {
-        return totalNomina;
-    }
-
-    /**
-     * Método para mostrar la nómina de los empleados.
-     */
-    public void mostrarNomina() {
+  public double calcularTotalSalarios() {
+        double total = 0;
         for (Empleado empleado : empleados) {
-            System.out.println("Empleado: " + empleado.getNombre() + " - Salario: " + empleado.calcularSalario());
+            total += empleado.calcularSalario();
         }
-        System.out.println("Total Nómina: " + calcularTotalNomina());
+        return total;
+    }
+
+    // Métodos CRUD para la nómina
+    public static Empleado buscarEmpleado(List<Empleado> empleados, String documento) {
+        for (Empleado empleado : empleados) {
+            if (empleado.getDocumento().equals(documento)) {
+                return empleado;
+            }
+        }
+        return null;
+    }
+
+    public static void agregarEmpleado(List<Empleado> empleados, Empleado nuevoEmpleado) {
+        empleados.add(nuevoEmpleado);
+    }
+
+    public static boolean eliminarEmpleado(List<Empleado> empleados, String documento) {
+        Empleado empleado = buscarEmpleado(empleados, documento);
+        if (empleado != null) {
+            empleados.remove(empleado);
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean actualizarEmpleado(List<Empleado> empleados, String documento, Empleado empleadoActualizado) {
+        Empleado empleado = buscarEmpleado(empleados, documento);
+        if (empleado != null) {
+            int index = empleados.indexOf(empleado);
+            empleados.set(index, empleadoActualizado);
+            return true;
+        }
+        return false;
     }
     
 }
