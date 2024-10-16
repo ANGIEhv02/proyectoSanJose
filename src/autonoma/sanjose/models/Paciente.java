@@ -3,38 +3,38 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package autonoma.sanjose.models;
+
 import java.util.ArrayList;
+
 /**
- *
- * @author herre
+ * esto es para crear un paciente
+ * @author Moral
  */
-
-
 public class Paciente {
     
     //Atributos
     
     private String nombre;
-    private String documentoIdentidad;
+    private String numeroDocumento;
     private int edad;
-    private ArrayList<String> enfermedades;  // Lista de enfermedades del paciente
-    private ArrayList<Medicamento> medicamentos;  // Medicamentos que el paciente está tomando
-
-    /**
-     * Constructor del paciente.
-     * @param nombre Nombre del paciente.
-     * @param documentoIdentidad Documento de identidad del paciente.
-     * @param edad Edad del paciente.
-     */
-    public Paciente(String nombre, String documentoIdentidad, int edad) {
+    private String correo;
+    private String telefono;
+    private String estado; // Saludable o Crítico
+    private ArrayList<Enfermedad> enfermedades;
+    
+    //Constructor
+    
+    public Paciente(String nombre, String numeroDocumento, int edad, String correo, String telefono) {
         this.nombre = nombre;
-        this.documentoIdentidad = documentoIdentidad;
+        this.numeroDocumento = numeroDocumento;
         this.edad = edad;
+        this.correo = correo;
+        this.telefono = telefono;
+        this.estado = "Saludable"; // Estado inicial
         this.enfermedades = new ArrayList<>();
-        this.medicamentos = new ArrayList<>();
     }
     
-    //Getters y Setters
+    //Getters y Setters 
 
     public String getNombre() {
         return nombre;
@@ -44,12 +44,12 @@ public class Paciente {
         this.nombre = nombre;
     }
 
-    public String getDocumentoIdentidad() {
-        return documentoIdentidad;
+    public String getNumeroDocumento() {
+        return numeroDocumento;
     }
 
-    public void setDocumentoIdentidad(String documentoIdentidad) {
-        this.documentoIdentidad = documentoIdentidad;
+    public void setNumeroDocumento(String numeroDocumento) {
+        this.numeroDocumento = numeroDocumento;
     }
 
     public int getEdad() {
@@ -60,43 +60,58 @@ public class Paciente {
         this.edad = edad;
     }
 
-    public ArrayList<String> getEnfermedades() {
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public ArrayList<Enfermedad> getEnfermedades() {
         return enfermedades;
     }
 
-    public void setEnfermedades(ArrayList<String> enfermedades) {
+    public void setEnfermedades(ArrayList<Enfermedad> enfermedades) {
         this.enfermedades = enfermedades;
     }
-
-    public ArrayList<Medicamento> getMedicamentos() {
-        return medicamentos;
-    }
-
-    public void setMedicamentos(ArrayList<Medicamento> medicamentos) {
-        this.medicamentos = medicamentos;
-    }
     
-
     /**
      * Método para agregar una enfermedad al paciente.
-     * @param enfermedad Enfermedad a agregar.
      */
-    public void agregarEnfermedad(String enfermedad) {
+    public void agregarEnfermedad(Enfermedad enfermedad) {
         enfermedades.add(enfermedad);
     }
 
     /**
-     * Método para prescribir un medicamento al paciente.
-     * @param medicamento Medicamento a ser prescrito.
+     * Método para curar una enfermedad.
      */
-    public void prescribirMedicamento(Medicamento medicamento) {
-        medicamentos.add(medicamento);
+    public void curarEnfermedad(Enfermedad enfermedad, Medicamento medicamento) {
+        if (enfermedades.contains(enfermedad)) {
+            enfermedades.remove(enfermedad);
+            // Aquí se podría agregar el medicamento a una lista si fuera necesario
+            if (enfermedades.isEmpty()) {
+                estado = "Saludable"; // Cambiar a Saludable si no tiene enfermedades
+            }
+        } else {
+            throw new IllegalArgumentException("El paciente no tiene esta enfermedad.");
+        }
     }
-
-    @Override
-    public String toString() {
-        return "Paciente: " + nombre + " (" + documentoIdentidad + "), Edad: " + edad;
-    }
-}
-
     
+}

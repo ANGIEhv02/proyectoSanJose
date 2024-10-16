@@ -5,44 +5,72 @@
 package autonoma.sanjose.models;
 
 /**
- * Clase que representa a un empleado operativo.
- * Hereda de la clase Empleado.
+ *
  * @author Moral
  */
 public class EmpleadoOperativo extends Empleado {
     
     //Atributos
     
-    private String departamento;
+    private String areaTrabajo;
+     
+    //Constructor 
+
+    public EmpleadoOperativo(String areaTrabajo, String nombre, String numeroDocumento, int edad, double salarioBase) {
+        super(nombre, numeroDocumento, edad, salarioBase);
+        this.areaTrabajo = areaTrabajo;
+    }
     
-    
-    /**
-     * Constructor del empleado operativo.
-     * @param nombre Nombre del empleado.
-     * @param documentoIdentidad Documento de identidad.
-     * @param edad Edad del empleado.
-     * @param salarioBase Salario base del empleado.
-     * @param departamento Departamento al que pertenece.
-     */
-    public EmpleadoOperativo(String nombre, String documentoIdentidad, int edad, double salarioBase, 
-        String departamento) {
-        super(nombre, documentoIdentidad, edad, salarioBase);
-        this.departamento = departamento;
+    //Getters y Setters
+
+    public String getAreaTrabajo() {
+        return areaTrabajo;
     }
 
+    public void setAreaTrabajo(String areaTrabajo) {
+        this.areaTrabajo = areaTrabajo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getNumeroDocumento() {
+        return numeroDocumento;
+    }
+
+    public void setNumeroDocumento(String numeroDocumento) {
+        this.numeroDocumento = numeroDocumento;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public double getSalarioBase() {
+        return salarioBase;
+    }
+
+    public void setSalarioBase(double salarioBase) {
+        this.salarioBase = salarioBase;
+    }
+    
     public EmpleadoOperativo(String nombre, String numeroDocumento, int edad, double salarioBase) {
         super(nombre, numeroDocumento, edad, salarioBase);
     }
 
     @Override
     public double calcularSalario() {
-          return salarioBase;  
+        return salarioBase * 1.20; // Aumentar el 20% al salario base
     }
-    
-    @Override
-    public String toString() {
-        return super.toString() + ", Departamento: " + departamento;
-    }
-    
+
     
 }

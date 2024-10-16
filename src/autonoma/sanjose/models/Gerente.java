@@ -5,27 +5,29 @@
 package autonoma.sanjose.models;
 
 /**
- *
- * @author herre
+ * Estos es para dar acabo la clase gerente insertar un gerente
+ * @author Moral
  */
 public class Gerente {
     
     //Atributos
     
     private String nombre;
-    private String documento;
+    private String numeroDocumento;
     private int edad;
     private String carrera;
-
+    
     //Constructor
-    public Gerente(String nombre, String documento, int edad, String carrera) {
+
+    public Gerente(String nombre, String numeroDocumento, int edad, String carrera) {
         this.nombre = nombre;
-        this.documento = documento;
+        this.numeroDocumento = numeroDocumento;
         this.edad = edad;
         this.carrera = carrera;
     }
+    
+    //Getters y Setters 
 
-    // Getters y Setters
     public String getNombre() {
         return nombre;
     }
@@ -34,12 +36,12 @@ public class Gerente {
         this.nombre = nombre;
     }
 
-    public String getDocumento() {
-        return documento;
+    public String getNumeroDocumento() {
+        return numeroDocumento;
     }
 
-    public void setDocumento(String documento) {
-        this.documento = documento;
+    public void setNumeroDocumento(String numeroDocumento) {
+        this.numeroDocumento = numeroDocumento;
     }
 
     public int getEdad() {
@@ -58,10 +60,4 @@ public class Gerente {
         this.carrera = carrera;
     }
     
-    @Override
-    public String toString() {
-        return nombre + " (" + documento + "), " + carrera + ", Edad: " + edad;
-    }
 }
-
-

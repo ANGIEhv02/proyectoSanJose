@@ -5,44 +5,77 @@
 package autonoma.sanjose.models;
 
 /**
- ** Clase que representa a un empleado del área de salud.
- *  Hereda de la clase Empleado.
+ * esta clase es para crear un empleado salud
  * @author Moral
  */
 public class EmpleadoSalud extends Empleado {
     
-    //Atributos
+    // Atributos
     
     private String especialidad;
     private int horasTrabajadas;
     
-    //Constructo
-     /**
-     * Constructor del empleado de salud.
-     * @param nombre Nombre del empleado.
-     * @param numeroDocumento Documento de identidad.
-     * @param edad Edad del empleado.
-     * @param salarioBase Salario base del empleado.
-     * @param especialidad Especialidad médica.
-     * @param horasTrabajadas Número de horas trabajadas.
-     */
+    //Constructor
+
     public EmpleadoSalud(String especialidad, int horasTrabajadas, String nombre, String numeroDocumento, int edad, double salarioBase) {
         super(nombre, numeroDocumento, edad, salarioBase);
         this.especialidad = especialidad;
         this.horasTrabajadas = horasTrabajadas;
     }
     
-    public EmpleadoSalud(String nombre, String numeroDocumento, int edad, double salarioBase) {
-        super(nombre, numeroDocumento, edad, salarioBase);
+    // Getters y Setters
+
+    public String getEspecialidad() {
+        return especialidad;
     }
 
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
+    }
+
+    public int getHorasTrabajadas() {
+        return horasTrabajadas;
+    }
+
+    public void setHorasTrabajadas(int horasTrabajadas) {
+        this.horasTrabajadas = horasTrabajadas;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getNumeroDocumento() {
+        return numeroDocumento;
+    }
+
+    public void setNumeroDocumento(String numeroDocumento) {
+        this.numeroDocumento = numeroDocumento;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public double getSalarioBase() {
+        return salarioBase;
+    }
+
+    public void setSalarioBase(double salarioBase) {
+        this.salarioBase = salarioBase;
+    }
+    
     @Override
     public double calcularSalario() {
          return salarioBase + (salarioBase * 0.012 * horasTrabajadas);
     }
-    
-    @Override
-    public String toString() {
-        return super.toString() + ", Especialidad: " + especialidad + ", Horas trabajadas: " + horasTrabajadas;
-    }
+
 }

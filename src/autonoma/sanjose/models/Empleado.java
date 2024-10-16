@@ -5,14 +5,12 @@
 package autonoma.sanjose.models;
 
 /**
- *
- * Clase abstracta que representa a un empleado en el hospital.
- * Los métodos y atributos comunes a los empleados están definidos aquí
- * @author herre
+ * esta clase es para generar un empleado
+ * @author Moral
  */
 public abstract class Empleado {
-   
-    //Atributos
+    
+    //Atributos 
     
     protected String nombre;
     protected String numeroDocumento;
@@ -20,41 +18,50 @@ public abstract class Empleado {
     protected double salarioBase;
     
     //Constructor
-
+    
     public Empleado(String nombre, String numeroDocumento, int edad, double salarioBase) {
         this.nombre = nombre;
         this.numeroDocumento = numeroDocumento;
         this.edad = edad;
         this.salarioBase = salarioBase;
     }
+    
+    //Getters y Setters
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getNumeroDocumento() {
+        return numeroDocumento;
+    }
+
+    public void setNumeroDocumento(String numeroDocumento) {
+        this.numeroDocumento = numeroDocumento;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public double getSalarioBase() {
+        return salarioBase;
+    }
+
+    public void setSalarioBase(double salarioBase) {
+        this.salarioBase = salarioBase;
+    }
+    
     /**
-     * Método abstracto que se implementa en subclases para calcular el salario.
-     * @return Salario neto del empleado.
+     * Método abstracto para calcular el salario.
      */
     public abstract double calcularSalario();
-
-    @Override
-    public String toString() {
-        return nombre + " (" + numeroDocumento + "), Edad: " + edad + ", Salario base: " + salarioBase;
-    }
 }
-
-
-class EmpleadoOperativo extends Empleado {
-    private String areaTrabajo;
-
-    public EmpleadoOperativo(String nombre, String numeroDocumento, int edad, double salarioBase, String areaTrabajo) {
-        super(nombre, numeroDocumento, edad, salarioBase);
-        this.areaTrabajo = areaTrabajo;
-    }
-
-    @Override
-    public double calcularSalario() {
-        return salarioBase + (salarioBase * 0.20);
-    }
-}
-
-
-  
-    
