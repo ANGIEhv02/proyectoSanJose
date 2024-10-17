@@ -4,17 +4,28 @@
  */
 package autonoma.sanjose.views;
 
+import autonoma.sanjose.models.Hospital;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author herre
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
-
+    private Hospital hospital;
     /**
      * Creates new form VentanaPrincipal
      */
-    public VentanaPrincipal() {
+    public VentanaPrincipal(Hospital hospital) {
         initComponents();
+        this.setLocationRelativeTo(null);
+        try{
+            this.setIconImage(new ImageIcon(getClass().getResource("/autonoma/DemoTienda/images/tienda.png")).getImage());
+        }catch(Exception e){
+            
+        }
+        this.hospital = hospital;
+        this.lblNombreHospital.setText(this.hospital.getNombre());
     }
 
     /**
@@ -29,7 +40,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblNombreHospital = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -72,8 +83,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 255));
 
-        jLabel1.setFont(new java.awt.Font("Serif", 0, 36)); // NOI18N
-        jLabel1.setText("Hospital San José St. Bonaventure");
+        lblNombreHospital.setFont(new java.awt.Font("Serif", 0, 36)); // NOI18N
+        lblNombreHospital.setText("Hospital San José St. Bonaventure");
 
         jLabel3.setFont(new java.awt.Font("Monotype Corsiva", 1, 18)); // NOI18N
         jLabel3.setText("Vidal Antonio Morales - Angie Herrera Villa ");
@@ -91,7 +102,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGap(22, 22, 22)
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)
-                        .addComponent(jLabel1))
+                        .addComponent(lblNombreHospital))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(176, 176, 176)
                         .addComponent(jLabel3)))
@@ -102,7 +113,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(23, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(lblNombreHospital)
                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
@@ -274,47 +285,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaPrincipal().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BtnCitas;
     private javax.swing.JPanel BtnEmpleado;
     private javax.swing.JPanel BtnFarmacia;
     private javax.swing.JPanel BtnPacientes;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -329,5 +304,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel lblNombreHospital;
     // End of variables declaration//GEN-END:variables
 }

@@ -12,26 +12,68 @@ public class MedicamentoDeMarca  extends Medicamento{
     
     //Atributos
     
-    private String nombreMarca;
+    private String marca;
+    private String laboratorio;
     
     //Constructor
     
-    
-    public MedicamentoDeMarca(String nombreMarca, String nombre, String laboratorio, double precio) {
-        super(nombre, laboratorio, precio);
-        this.nombreMarca = nombreMarca;
+   public MedicamentoDeMarca (String nombre, double precio, int cantidadDisponible,
+           String marca, String laboratorio) {
+        super(nombre, precio, cantidadDisponible);
+        this.marca = marca;
+        this.laboratorio = laboratorio;
     }
+   
+   //Getters y Setters
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getLaboratorio() {
+        return laboratorio;
+    }
+
+    public void setLaboratorio(String laboratorio) {
+        this.laboratorio = laboratorio;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public int getCantidadDisponible() {
+        return cantidadDisponible;
+    }
+
+    public void setCantidadDisponible(int cantidadDisponible) {
+        this.cantidadDisponible = cantidadDisponible;
+    }
+   
+   
     
     //Metodos
-
-    public MedicamentoDeMarca(String nombre, String laboratorio, double precio) {
-        super(nombre, laboratorio, precio);
-    }
-
-    @Override
-    public String obtenerDetalles() {
-        return "Medicamento de Marca: " + nombre + ", Laboratorio: " + laboratorio + ", Precio: " + precio + 
-               ", Marca: " + nombreMarca;
+     @Override
+    public double calcularValorMedicamento() {
+        return precio * cantidadDisponible; // Valor total del medicamento
     }
     
 }
+
+   

@@ -4,6 +4,8 @@
  */
 package autonoma.sanjose.models;
 
+import java.util.List;
+
 /**
  * esta clase es para generar un empleado
  * @author Moral
@@ -13,18 +15,20 @@ public abstract class Empleado {
     //Atributos 
     
     protected String nombre;
-    protected String numeroDocumento;
+    protected String documento;
     protected int edad;
     protected double salarioBase;
+
     
     //Constructor
     
-    public Empleado(String nombre, String numeroDocumento, int edad, double salarioBase) {
+    public Empleado(String nombre, String documento, int edad, double salarioBase) {
         this.nombre = nombre;
-        this.numeroDocumento = numeroDocumento;
+        this.documento = documento;
         this.edad = edad;
         this.salarioBase = salarioBase;
     }
+
     
     //Getters y Setters
 
@@ -36,12 +40,12 @@ public abstract class Empleado {
         this.nombre = nombre;
     }
 
-    public String getNumeroDocumento() {
-        return numeroDocumento;
+    public String getDocumento() {
+        return documento;
     }
 
-    public void setNumeroDocumento(String numeroDocumento) {
-        this.numeroDocumento = numeroDocumento;
+    public void setDocumento(String documento) {
+        this.documento = documento;
     }
 
     public int getEdad() {
@@ -59,9 +63,42 @@ public abstract class Empleado {
     public void setSalarioBase(double salarioBase) {
         this.salarioBase = salarioBase;
     }
-    
-    /**
-     * Método abstracto para calcular el salario.
-     */
+
     public abstract double calcularSalario();
+
+    // Métodos CRUD genéricos para empleados
+    public static Empleado buscarEmpleado(List<Empleado> empleados, String documento) {
+        for (Empleado empleado : empleados) {
+            if (empleado.getDocumento().equals(documento)) {
+                return empleado;
+            }
+        }
+        return null;
+    }
+
+    public static void agregarEmpleado(List<Empleado> empleados, Empleado nuevoEmpleado) {
+        empleados.add(nuevoEmpleado);
+    }
+
+    public static boolean eliminarEmpleado(List<Empleado> empleados, String documento) {
+        Empleado empleado = buscarEmpleado(empleados, documento);
+        if (empleado != null) {
+            empleados.remove(empleado);
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean actualizarEmpleado(List<Empleado> empleados, String documento, Empleado empleadoActualizado) {
+        Empleado empleado = buscarEmpleado(empleados, documento);
+        if (empleado != null) {
+            int index = empleados.indexOf(empleado);
+            empleados.set(index, empleadoActualizado);
+            return true;
+        }
+        return false;
+    }
+
+    
+   
 }

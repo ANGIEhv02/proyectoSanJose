@@ -4,6 +4,8 @@
  */
 package autonoma.sanjose.models;
 
+import java.util.List;
+
 /**
  *
  * @author Moral
@@ -12,23 +14,23 @@ public class EmpleadoOperativo extends Empleado {
     
     //Atributos
     
-    private String areaTrabajo;
+     private String area;
      
     //Constructor 
 
-    public EmpleadoOperativo(String areaTrabajo, String nombre, String numeroDocumento, int edad, double salarioBase) {
-        super(nombre, numeroDocumento, edad, salarioBase);
-        this.areaTrabajo = areaTrabajo;
+    public EmpleadoOperativo(String nombre, String documento, int edad, double salarioBase, String area) {
+        super(nombre, documento, edad, salarioBase);
+        this.area = area;
     }
     
     //Getters y Setters
 
-    public String getAreaTrabajo() {
-        return areaTrabajo;
+    public String getArea() {
+        return area;
     }
 
-    public void setAreaTrabajo(String areaTrabajo) {
-        this.areaTrabajo = areaTrabajo;
+    public void setArea(String area) {
+        this.area = area;
     }
 
     public String getNombre() {
@@ -39,12 +41,12 @@ public class EmpleadoOperativo extends Empleado {
         this.nombre = nombre;
     }
 
-    public String getNumeroDocumento() {
-        return numeroDocumento;
+    public String getDocumento() {
+        return documento;
     }
 
-    public void setNumeroDocumento(String numeroDocumento) {
-        this.numeroDocumento = numeroDocumento;
+    public void setDocumento(String documento) {
+        this.documento = documento;
     }
 
     public int getEdad() {
@@ -62,15 +64,42 @@ public class EmpleadoOperativo extends Empleado {
     public void setSalarioBase(double salarioBase) {
         this.salarioBase = salarioBase;
     }
-    
-    public EmpleadoOperativo(String nombre, String numeroDocumento, int edad, double salarioBase) {
-        super(nombre, numeroDocumento, edad, salarioBase);
-    }
 
     @Override
     public double calcularSalario() {
-        return salarioBase * 1.20; // Aumentar el 20% al salario base
+        return salarioBase + (salarioBase * 0.20);
+    }
+    
+    // Métodos CRUD
+    public static EmpleadoOperativo buscarEmpleadoOperativo(List<EmpleadoOperativo> empleados, String documento) {
+        for (EmpleadoOperativo empleado : empleados) {
+            if (empleado.getDocumento().equals(documento)) {
+                return empleado;
+            }
+        }
+        return null;
     }
 
-    
+    public static void agregarEmpleadoOperativo(List<EmpleadoOperativo> empleados, EmpleadoOperativo nuevoEmpleado) {
+        empleados.add(nuevoEmpleado);
+    }
+
+    public static boolean eliminarEmpleadoOperativo(List<EmpleadoOperativo> empleados, String documento) {
+        EmpleadoOperativo empleado = buscarEmpleadoOperativo(empleados, documento);
+        if (empleado != null) {
+            empleados.remove(empleado);
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean actualizarEmpleadoOperativo(List<EmpleadoOperativo> empleados, String documento, EmpleadoOperativo empleadoActualizado) {
+        EmpleadoOperativo empleado = buscarEmpleadoOperativo(empleados, documento);
+        if (empleado != null) {
+            int index = empleados.indexOf(empleado);
+            empleados.set(index, empleadoActualizado);
+            return true;
+        }
+        return false;
+    }
 }

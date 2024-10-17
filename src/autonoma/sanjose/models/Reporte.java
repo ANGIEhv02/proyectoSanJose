@@ -4,6 +4,8 @@
  */
 package autonoma.sanjose.models;
 
+import java.util.List;
+
 /**
  * este modulo es para generar reportes de cita 
  * @author Moral
@@ -17,7 +19,7 @@ public class Reporte {
 
     //Constructor
 
-    public Reporte(String titulo, String contenido) {
+   public Reporte(String titulo, String contenido) {
         this.titulo = titulo;
         this.contenido = contenido;
     }
@@ -39,12 +41,40 @@ public class Reporte {
     public void setContenido(String contenido) {
         this.contenido = contenido;
     }
+
+   
     
-    /**
-     * Método para generar un resumen del reporte.
-     */
-    public String generarResumen() {
-        return "Título: " + titulo + "\nContenido: " + contenido;
+    // Métodos CRUD
+    public static Reporte buscarReporte(List<Reporte> reportes, String titulo) {
+        for (Reporte reporte : reportes) {
+            if (reporte.getTitulo().equals(titulo)) {
+                return reporte;
+            }
+        }
+        return null;
+    }
+
+    public static void agregarReporte(List<Reporte> reportes, Reporte nuevoReporte) {
+        reportes.add(nuevoReporte);
+    }
+
+    public static boolean eliminarReporte(List<Reporte> reportes, String titulo) {
+        Reporte reporte = buscarReporte(reportes, titulo);
+        if (reporte != null) {
+            reportes.remove(reporte);
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean actualizarReporte(List<Reporte> reportes, String titulo, Reporte reporteActualizado) {
+        Reporte reporte = buscarReporte(reportes, titulo);
+        if (reporte != null) {
+            int index = reportes.indexOf(reporte);
+            reportes.set(index, reporteActualizado);
+            return true;
+        }
+        return false;
     }
     
 }

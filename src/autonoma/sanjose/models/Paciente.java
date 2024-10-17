@@ -5,6 +5,7 @@
 package autonoma.sanjose.models;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * esto es para crear un paciente
@@ -15,23 +16,17 @@ public class Paciente {
     //Atributos
     
     private String nombre;
-    private String numeroDocumento;
+    private String documento;
     private int edad;
-    private String correo;
-    private String telefono;
-    private String estado; // Saludable o Crítico
-    private ArrayList<Enfermedad> enfermedades;
-    
+    private String enfermedad;
+
     //Constructor
     
-    public Paciente(String nombre, String numeroDocumento, int edad, String correo, String telefono) {
+    public Paciente(String nombre, String documento, int edad, String enfermedad) {
         this.nombre = nombre;
-        this.numeroDocumento = numeroDocumento;
+        this.documento = documento;
         this.edad = edad;
-        this.correo = correo;
-        this.telefono = telefono;
-        this.estado = "Saludable"; // Estado inicial
-        this.enfermedades = new ArrayList<>();
+        this.enfermedad = enfermedad;
     }
     
     //Getters y Setters 
@@ -44,12 +39,12 @@ public class Paciente {
         this.nombre = nombre;
     }
 
-    public String getNumeroDocumento() {
-        return numeroDocumento;
+    public String getDocumento() {
+        return documento;
     }
 
-    public void setNumeroDocumento(String numeroDocumento) {
-        this.numeroDocumento = numeroDocumento;
+    public void setDocumento(String documento) {
+        this.documento = documento;
     }
 
     public int getEdad() {
@@ -60,58 +55,44 @@ public class Paciente {
         this.edad = edad;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getEnfermedad() {
+        return enfermedad;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setEnfermedad(String enfermedad) {
+        this.enfermedad = enfermedad;
     }
 
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public ArrayList<Enfermedad> getEnfermedades() {
-        return enfermedades;
-    }
-
-    public void setEnfermedades(ArrayList<Enfermedad> enfermedades) {
-        this.enfermedades = enfermedades;
-    }
-    
-    /**
-     * Método para agregar una enfermedad al paciente.
-     */
-    public void agregarEnfermedad(Enfermedad enfermedad) {
-        enfermedades.add(enfermedad);
-    }
-
-    /**
-     * Método para curar una enfermedad.
-     */
-    public void curarEnfermedad(Enfermedad enfermedad, Medicamento medicamento) {
-        if (enfermedades.contains(enfermedad)) {
-            enfermedades.remove(enfermedad);
-            // Aquí se podría agregar el medicamento a una lista si fuera necesario
-            if (enfermedades.isEmpty()) {
-                estado = "Saludable"; // Cambiar a Saludable si no tiene enfermedades
+    // Métodos CRUD
+    public static Paciente buscarPaciente(List<Paciente> pacientes, String documento) {
+        for (Paciente paciente : pacientes) {
+            if (paciente.getDocumento().equals(documento)) {
+                return paciente;
             }
-        } else {
-            throw new IllegalArgumentException("El paciente no tiene esta enfermedad.");
         }
+        return null;
     }
-    
+
+    public static void agregarPaciente(List<Paciente> pacientes, Paciente nuevoPaciente) {
+        pacientes.add(nuevoPaciente);
+    }
+
+    public static boolean eliminarPaciente(List<Paciente> pacientes, String documento) {
+        Paciente paciente = buscarPaciente(pacientes, documento);
+        if (paciente != null) {
+            pacientes.remove(paciente);
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean actualizarPaciente(List<Paciente> pacientes, String documento, Paciente pacienteActualizado) {
+        Paciente paciente = buscarPaciente(pacientes, documento);
+        if (paciente != null) {
+            int index = pacientes.indexOf(paciente);
+            pacientes.set(index, pacienteActualizado);
+            return true;
+        }
+        return false;
+    }
 }

@@ -4,6 +4,8 @@
  */
 package autonoma.sanjose.models;
 
+import java.util.List;
+
 /**
  * esta clase es para crear un empleado salud
  * @author Moral
@@ -17,8 +19,8 @@ public class EmpleadoSalud extends Empleado {
     
     //Constructor
 
-    public EmpleadoSalud(String especialidad, String nombre, int horasTrabajadas, int edad, String numeroDocumento, int salarioBase) {
-        super(nombre, numeroDocumento, edad, salarioBase);
+    public EmpleadoSalud(String nombre, String documento, int edad, double salarioBase, String especialidad, int horasTrabajadas) {
+        super(nombre, documento, edad, salarioBase);
         this.especialidad = especialidad;
         this.horasTrabajadas = horasTrabajadas;
     }
@@ -49,12 +51,12 @@ public class EmpleadoSalud extends Empleado {
         this.nombre = nombre;
     }
 
-    public String getNumeroDocumento() {
-        return numeroDocumento;
+    public String getDocumento() {
+        return documento;
     }
 
-    public void setNumeroDocumento(String numeroDocumento) {
-        this.numeroDocumento = numeroDocumento;
+    public void setDocumento(String documento) {
+        this.documento = documento;
     }
 
     public int getEdad() {
@@ -72,10 +74,43 @@ public class EmpleadoSalud extends Empleado {
     public void setSalarioBase(double salarioBase) {
         this.salarioBase = salarioBase;
     }
-    
+
     @Override
     public double calcularSalario() {
-         return salarioBase + (salarioBase * 0.012 * horasTrabajadas);
+        return salarioBase + (salarioBase * 0.012 * horasTrabajadas);
+    }
+    
+    
+    // Métodos CRUD
+    public static EmpleadoSalud buscarEmpleadoSalud(List<EmpleadoSalud> empleados, String documento) {
+        for (EmpleadoSalud empleado : empleados) {
+            if (empleado.getDocumento().equals(documento)) {
+                return empleado;
+            }
+        }
+        return null;
     }
 
+    public static void agregarEmpleadoSalud(List<EmpleadoSalud> empleados, EmpleadoSalud nuevoEmpleado) {
+        empleados.add(nuevoEmpleado);
+    }
+
+    public static boolean eliminarEmpleadoSalud(List<EmpleadoSalud> empleados, String documento) {
+        EmpleadoSalud empleado = buscarEmpleadoSalud(empleados, documento);
+        if (empleado != null) {
+            empleados.remove(empleado);
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean actualizarEmpleadoSalud(List<EmpleadoSalud> empleados, String documento, EmpleadoSalud empleadoActualizado) {
+        EmpleadoSalud empleado = buscarEmpleadoSalud(empleados, documento);
+        if (empleado != null) {
+            int index = empleados.indexOf(empleado);
+            empleados.set(index, empleadoActualizado);
+            return true;
+        }
+        return false;
+    }
 }
