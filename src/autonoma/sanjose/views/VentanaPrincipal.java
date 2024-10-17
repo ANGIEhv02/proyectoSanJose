@@ -126,6 +126,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         BtnFarmacia.setBackground(new java.awt.Color(204, 204, 255));
         BtnFarmacia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnFarmaciaMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 BtnFarmaciaMouseEntered(evt);
             }
@@ -351,6 +354,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.mouseExited(BtnCitas);
     }//GEN-LAST:event_BtnCitasMouseExited
 
+    private void BtnFarmaciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnFarmaciaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnFarmaciaMouseClicked
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BtnCitas;
     private javax.swing.JPanel BtnEmpleado;
