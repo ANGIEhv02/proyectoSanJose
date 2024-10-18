@@ -4,6 +4,8 @@
  */
 package autonoma.sanjose.views;
 
+import autonoma.sanjose.models.Hospital;
+
 /**
  *
  * @author herre
@@ -13,8 +15,12 @@ public class Empleado extends javax.swing.JDialog {
     /**
      * Creates new form Empleado
      */
+<<<<<<< HEAD
     public Empleado(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+=======
+    public Empleado(VentanaPrincipal aThis, boolean par, Hospital hospital, VentanaPrincipal aThis1) {
+>>>>>>> e153f3702887b4b4dd8b2d1819813f31b4d4d6ef
         initComponents();
     }
 
@@ -242,6 +248,7 @@ public class Empleado extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+<<<<<<< HEAD
                 Empleado dialog = new Empleado(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
@@ -250,6 +257,9 @@ public class Empleado extends javax.swing.JDialog {
                     }
                 });
                 dialog.setVisible(true);
+=======
+                new Empleado(this, true, this.hospital, this).setVisible(true);
+>>>>>>> e153f3702887b4b4dd8b2d1819813f31b4d4d6ef
             }
         });
     }

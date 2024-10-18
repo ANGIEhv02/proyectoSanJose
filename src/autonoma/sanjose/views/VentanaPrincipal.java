@@ -5,7 +5,9 @@
 package autonoma.sanjose.views;
 
 import autonoma.sanjose.models.Hospital;
+import java.awt.Color;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 /**
  *
@@ -99,6 +101,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(204, 255, 255));
 
         BtnFarmacia.setBackground(new java.awt.Color(204, 204, 255));
+        BtnFarmacia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnFarmaciaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BtnFarmaciaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                BtnFarmaciaMouseExited(evt);
+            }
+        });
 
         jLabel4.setText("FARMACIA ");
 
@@ -128,6 +141,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
 
         BtnPacientes.setBackground(new java.awt.Color(204, 204, 255));
+        BtnPacientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnPacientesMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BtnPacientesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                BtnPacientesMouseExited(evt);
+            }
+        });
 
         jLabel5.setText("PACIENTES");
 
@@ -157,6 +181,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
 
         BtnEmpleado.setBackground(new java.awt.Color(204, 204, 255));
+        BtnEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnEmpleadoMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BtnEmpleadoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                BtnEmpleadoMouseExited(evt);
+            }
+        });
 
         jLabel6.setText("EMPLEADO");
 
@@ -187,6 +222,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
 
         BtnCitas.setBackground(new java.awt.Color(204, 204, 255));
+        BtnCitas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BtnCitasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                BtnCitasMouseExited(evt);
+            }
+        });
 
         jLabel7.setText("CITAS");
 
@@ -261,6 +304,53 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void BtnFarmaciaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnFarmaciaMouseEntered
+        this.mouseEntered(BtnFarmacia);
+    }//GEN-LAST:event_BtnFarmaciaMouseEntered
+
+    private void BtnFarmaciaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnFarmaciaMouseExited
+         this.mouseExited(BtnFarmacia);
+    }//GEN-LAST:event_BtnFarmaciaMouseExited
+
+    private void BtnPacientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnPacientesMouseEntered
+         this.mouseEntered(BtnPacientes);
+    }//GEN-LAST:event_BtnPacientesMouseEntered
+
+    private void BtnPacientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnPacientesMouseExited
+        this.mouseExited(BtnPacientes);
+    }//GEN-LAST:event_BtnPacientesMouseExited
+
+    private void BtnEmpleadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnEmpleadoMouseExited
+        this.mouseExited(BtnEmpleado);
+    }//GEN-LAST:event_BtnEmpleadoMouseExited
+
+    private void BtnEmpleadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnEmpleadoMouseEntered
+        this.mouseEntered(BtnEmpleado);
+    }//GEN-LAST:event_BtnEmpleadoMouseEntered
+
+    private void BtnCitasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnCitasMouseEntered
+        this.mouseEntered(BtnCitas);
+    }//GEN-LAST:event_BtnCitasMouseEntered
+
+    private void BtnCitasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnCitasMouseExited
+        this.mouseExited(BtnCitas);
+    }//GEN-LAST:event_BtnCitasMouseExited
+
+    private void BtnFarmaciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnFarmaciaMouseClicked
+        Farmacia ventanaFarmacia = new Farmacia ( this, true ,this.hospital,this);
+        ventanaFarmacia.setVisible(true);
+    }//GEN-LAST:event_BtnFarmaciaMouseClicked
+
+    private void BtnPacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnPacientesMouseClicked
+        Paciente ventanaPaciente = new Paciente (this,true, this.hospital,this);
+        ventanaPaciente.setVisible(true);
+    }//GEN-LAST:event_BtnPacientesMouseClicked
+
+    private void BtnEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnEmpleadoMouseClicked
+        Empleado ventanaEmpleado = new Empleado (this,true, this.hospital,this);
+        ventanaEmpleado.setVisible(true);
+    }//GEN-LAST:event_BtnEmpleadoMouseClicked
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BtnCitas;
     private javax.swing.JPanel BtnEmpleado;
@@ -280,4 +370,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lblNombreHospital;
     // End of variables declaration//GEN-END:variables
+
+    private void mouseEntered(JPanel panel) {
+       panel.setBackground(new Color(200,255,255));
+    }
+
+    private void mouseExited(JPanel panel) {
+        panel.setBackground(new Color(255,255,255));
+    }
+
 }
