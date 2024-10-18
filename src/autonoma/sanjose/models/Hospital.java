@@ -6,6 +6,7 @@ package autonoma.sanjose.models;
 
 import java.util.ArrayList;
 import  autonoma.sanjose.models.*;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class Hospital {
     
     //Constructor
 
-    public Hospital(String nombre, String ubicacion, double presupuesto, Gerente gerente) {
+    public Hospital(String nombre, String ubicacion) {
         this.nombre = nombre;
         this.ubicacion = ubicacion;
         this.presupuesto = presupuesto;
@@ -99,4 +100,6 @@ public class Hospital {
         }
         return false;
     }
+
+ 
 }
