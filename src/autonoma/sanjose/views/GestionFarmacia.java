@@ -10,18 +10,22 @@ import autonoma.sanjose.models.Hospital;
  *
  * @author herre
  */
-public class Farmacia extends javax.swing.JDialog {
-
+public class GestionFarmacia extends javax.swing.JDialog {
+private Hospital hospital;
     /**
      * Creates new form Farmacia
      */
-<<<<<<< HEAD
-    public Farmacia(java.awt.Frame parent, boolean modal) {
+
+    public GestionFarmacia(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-=======
-    public Farmacia(VentanaPrincipal aThis, boolean par, Hospital hospital, VentanaPrincipal aThis1) {
->>>>>>> e153f3702887b4b4dd8b2d1819813f31b4d4d6ef
+    }
+    public GestionFarmacia(VentanaPrincipal aThis, boolean par, Hospital hospital, VentanaPrincipal aThis1) {
+
         initComponents();
+    }
+
+    GestionFarmacia() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -221,51 +225,7 @@ public class Farmacia extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Farmacia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Farmacia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Farmacia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Farmacia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-<<<<<<< HEAD
-                Farmacia dialog = new Farmacia(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-=======
-                new Farmacia(this, true, this.hospital, this).setVisible(true);
->>>>>>> e153f3702887b4b4dd8b2d1819813f31b4d4d6ef
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

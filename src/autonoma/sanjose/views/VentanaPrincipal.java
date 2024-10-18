@@ -1,12 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package autonoma.sanjose.views;
 
 import autonoma.sanjose.models.Hospital;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
@@ -14,7 +15,57 @@ import javax.swing.JPanel;
  * @author herre
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
+    private JButton btnGestionEmpleados;
+    private JButton btnGestionPacientes;
+    private JButton btnGestionFarmacia;
+    private JButton btnReportes;
+    private Hospital hospitalmain;
     private Hospital hospital;
+
+    public VentanaPrincipal() {
+        setTitle("Hospital San José St. Bonaventure - Ventana Principal");
+        setSize(400, 300);
+        setLocationRelativeTo(null); // Centra la ventana
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLayout(null); // Usar diseño nulo para posicionar los botones manualmente
+
+        // Inicializar los botones
+        btnGestionEmpleados = new JButton("Gestión de Empleados");
+        btnGestionEmpleados.setBounds(100, 30, 200, 30);
+        btnGestionPacientes = new JButton("Gestión de Pacientes");
+        btnGestionPacientes.setBounds(100, 70, 200, 30);
+        btnGestionFarmacia = new JButton("Gestión de Farmacia");
+        btnGestionFarmacia.setBounds(100, 110, 200, 30);
+        btnReportes = new JButton("Generar Reportes");
+        btnReportes.setBounds(100, 150, 200, 30);
+
+        // Agregar los botones a la ventana
+        add(btnGestionEmpleados);
+        add(btnGestionPacientes);
+        add(btnGestionFarmacia);
+        add(btnReportes);
+
+        // Asignar acciones a los botones para abrir las otras ventanas
+        btnGestionEmpleados.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GestionEmpleado gestionEmpleados = new GestionEmpleado();
+                gestionEmpleados.setVisible(true);
+            }
+        });
+
+      
+
+        btnGestionFarmacia.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GestionFarmacia gestionFarmacia = new GestionFarmacia();
+                gestionFarmacia.setVisible(true);
+            }
+        });
+
+        
+    }
     /**
      * Creates new form VentanaPrincipal
      */
@@ -26,8 +77,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }catch(Exception e){
             
         }
-        this.hospital = hospital;
-        this.lblNombreHospital.setText(this.hospital.getNombre());
+      
     }
 
     /**
@@ -337,18 +387,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnCitasMouseExited
 
     private void BtnFarmaciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnFarmaciaMouseClicked
-        Farmacia ventanaFarmacia = new Farmacia ( this, true ,this.hospital,this);
+        GestionFarmacia ventanaFarmacia = new GestionFarmacia ( this, true ,this.hospital,this);
         ventanaFarmacia.setVisible(true);
     }//GEN-LAST:event_BtnFarmaciaMouseClicked
 
     private void BtnPacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnPacientesMouseClicked
-        Paciente ventanaPaciente = new Paciente (this,true, this.hospital,this);
-        ventanaPaciente.setVisible(true);
+        
+        
     }//GEN-LAST:event_BtnPacientesMouseClicked
 
     private void BtnEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnEmpleadoMouseClicked
-        Empleado ventanaEmpleado = new Empleado (this,true, this.hospital,this);
-        ventanaEmpleado.setVisible(true);
+      GestionEmpleado ventanaEmpleado = new GestionEmpleado (this,true,this.hospital,this);
+      ventanaEmpleado.setVisible(true);
     }//GEN-LAST:event_BtnEmpleadoMouseClicked
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
